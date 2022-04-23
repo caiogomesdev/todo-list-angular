@@ -11,7 +11,20 @@ export class ToDoListComponent implements OnInit {
 
   constructor() { }
 
+  deleteItemTaskList(itemNumber: number): void {
+    this.taskList.splice(itemNumber, 1);
+  }
+
+  deleteAllItemsTaskList(): void {
+    const confirm = window.confirm('Você deseja excluir a lista?');
+    if (confirm) this.taskList = [];
+  }
+  addItemTaskList(task: string): void {
+    this.taskList.push({task, checked: false});
+  }
+
   ngOnInit(): void {
+    this.taskList.push({ task: 'qweqweqweq', checked: false });
   }
 
 }

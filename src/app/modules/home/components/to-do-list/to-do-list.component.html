@@ -3,15 +3,15 @@
     <li *ngFor="let item of taskList; let index = index">
       <input type="checkbox" [(ngModel)]="item.checked"/>
       <input type="text" [ngClass]="{'checked' : item.checked }" [(ngModel)]="item.task" [disabled]="item.checked"/>
-      <button>
+      <button (click)="deleteItemTaskList(index)">
         <img src="assets/icons8-lixo.svg" />
       </button>
     </li>
   </ul>
   <h3 *ngIf="!taskList.length" class="sem-tarefas">
-    Você ainda não tem task...
+    Você não tem task...
   </h3>
 </section>
 
-<app-to-do-input-add-itens></app-to-do-input-add-itens>
-<app-to-do-button-delete-all></app-to-do-button-delete-all>
+<app-to-do-input-add-itens (addItemEvent) = "addItemTaskList($event)"></app-to-do-input-add-itens>
+<app-to-do-button-delete-all *ngIf="taskList.length" (click)="deleteAllItemsTaskList()"></app-to-do-button-delete-all>
