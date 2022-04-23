@@ -31,6 +31,9 @@ section {
           &.checked {
             text-decoration: line-through;
           }
+          &:disabled{
+            background-color: transparent;
+          }
         }
         &[type="checkbox"] {
           width: 16px;
@@ -56,5 +59,10 @@ section {
         }
       }
     }
+  }
+  .sem-tarefas {
+    padding-top: 20px;
+    color: $primary-text-color;
+    text-align: center;
   }
 }

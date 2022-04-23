@@ -1,13 +1,16 @@
 <section>
-  <ul>
-    <li >
-      <input type="checkbox" />
-      <input type="text" />
+  <ul *ngIf="taskList.length">
+    <li *ngFor="let item of taskList; let index = index">
+      <input type="checkbox" [(ngModel)]="item.checked"/>
+      <input type="text" [ngClass]="{'checked' : item.checked }" [(ngModel)]="item.task" [disabled]="item.checked"/>
       <button>
         <img src="assets/icons8-lixo.svg" />
       </button>
     </li>
   </ul>
+  <h3 *ngIf="!taskList.length" class="sem-tarefas">
+    Você ainda não tem task...
+  </h3>
 </section>
 
 <app-to-do-input-add-itens></app-to-do-input-add-itens>
