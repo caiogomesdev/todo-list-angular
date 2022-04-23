@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { TaskList } from '../../model/task-list';
 
 @Component({
@@ -6,7 +6,7 @@ import { TaskList } from '../../model/task-list';
   templateUrl: './to-do-list.component.html',
   styleUrls: ['./to-do-list.component.scss']
 })
-export class ToDoListComponent implements OnInit {
+export class ToDoListComponent implements OnInit, DoCheck {
   taskList: Array<TaskList> = [];
 
   constructor() { }
@@ -22,9 +22,18 @@ export class ToDoListComponent implements OnInit {
   addItemTaskList(task: string): void {
     this.taskList.push({task, checked: false});
   }
-
-  ngOnInit(): void {
-    this.taskList.push({ task: 'qweqweqweq', checked: false });
+  validationInput(task: string, index: number): void {
+    if (!task.trim()) {
+      const confirm = window.confirm('Você deseja apagar essa tarefa?');
+      if (confirm) this.deleteItemTaskList(index);
+    }
   }
-
+  ngOnInit(): void {
+    const taskList = localStorage.getItem('taskList') || '';
+    this.taskList = JSON.parse(taskList);
+  }
+  ngDoCheck(): void {
+    this.taskList.sort((first, last) => Number(first.checked) - Number(last.checked));
+    if (this.taskList) localStorage.setItem('taskList', JSON.stringify(this.taskList));
+  }
 }
