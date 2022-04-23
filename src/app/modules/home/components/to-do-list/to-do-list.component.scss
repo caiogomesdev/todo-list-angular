@@ -22,6 +22,7 @@ section {
           padding: 5px 10px;
           border: none;
           font-size: 16px;
+          font-weight: bold;
           color: $primary-text-color;
           &:focus{
             outline: solid 1px black;
@@ -42,6 +43,7 @@ section {
         img {
           width: 16px;
         }
+
         background-color: transparent;
         border: none;
 

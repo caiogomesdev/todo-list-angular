@@ -1,0 +1,21 @@
+@import '../../../../../scss/variables.scss';
+
+input {
+  display: flex;
+  margin: 0 auto;
+  margin-top: -20px;
+  width: 75%;
+  padding: 10px 15px;
+  background-color: $tertiary-background-color;
+  color: $tertiary-color;
+
+  outline: none;
+  border: none;
+
+  font-size: 16px;
+  text-align: center;
+
+  &::placeholder{
+    color: $tertiary-color;
+  }
+}
